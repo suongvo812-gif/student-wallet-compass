@@ -67,7 +67,7 @@ function Dashboard() {
       </div>
 
       <div className="grid gap-4 lg:grid-cols-3">
-        <div className="bg-balance dot-grid-wrap relative overflow-hidden rounded-3xl p-6 text-on-dark shadow-lift lg:col-span-1">
+        <div className="bg-balance relative overflow-hidden rounded-3xl p-6 text-on-dark shadow-lift lg:col-span-1">
           <div className="dot-grid absolute inset-0 opacity-60" aria-hidden />
           <div className="relative">
             <div className="flex items-center justify-between">
