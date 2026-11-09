@@ -51,7 +51,8 @@ export function monthKeyOf(date: string | Date): string {
 }
 
 export function shiftMonth(key: string, delta: number): string {
-  const [y, m] = key.split("-").map(Number);
+  const y = Number(key.slice(0, 4));
+  const m = Number(key.slice(5, 7));
   const d = new Date(y, m - 1 + delta, 1);
   return monthKeyOf(d);
 }
