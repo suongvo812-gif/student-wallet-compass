@@ -178,7 +178,7 @@ function CardsPage() {
   );
 }
 
-function CardForm({ card, onDone }: { card?: Card; onDone: () => void }) {
+function CardForm({ card, onDone }: { card?: Card | undefined; onDone: () => void }) {
   const { t } = useI18n();
   const name = useDisplayName();
   const save = useSaveCard();

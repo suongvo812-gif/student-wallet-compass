@@ -154,7 +154,7 @@ function BudgetPage() {
   );
 }
 
-function BudgetForm({ budget, taken, onDone }: { budget?: Budget; taken: string[]; onDone: () => void }) {
+function BudgetForm({ budget, taken, onDone }: { budget?: Budget | undefined; taken: string[]; onDone: () => void }) {
   const { t, cat } = useI18n();
   const save = useSaveBudget();
   const options = EXPENSE_CATEGORIES.filter((c) => c === budget?.category || !taken.includes(c));

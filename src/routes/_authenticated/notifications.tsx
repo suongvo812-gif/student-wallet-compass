@@ -31,10 +31,10 @@ function NotificationsPage() {
   const render = (n: Notification) => {
     const p = (n.params ?? {}) as Record<string, string | number>;
     const vars = {
-      category: p.category ? cat(String(p.category)) : "",
-      percent: p.percent ?? "",
-      spent: p.spent != null ? money(Number(p.spent)) : "",
-      limit: p.limit != null ? money(Number(p.limit)) : "",
+      category: p["category"] ? cat(String(p["category"])) : "",
+      percent: p["percent"] ?? "",
+      spent: p["spent"] != null ? money(Number(p["spent"])) : "",
+      limit: p["limit"] != null ? money(Number(p["limit"])) : "",
     };
     const titleKey = `notif_${n.title_key}_title` as DictKey;
     const bodyKey = `notif_${n.title_key}_body` as DictKey;

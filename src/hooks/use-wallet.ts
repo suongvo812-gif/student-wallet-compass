@@ -46,7 +46,7 @@ export function useDisplayName() {
   const user = useCurrentUser();
   const profile = useProfile();
   const meta = user.user_metadata as Record<string, string | undefined>;
-  return profile?.full_name || meta.full_name || meta.name || user.email?.split("@")[0] || "";
+  return profile?.full_name || meta["full_name"] || meta["name"] || user.email?.split("@")[0] || "";
 }
 
 export function useMoney() {

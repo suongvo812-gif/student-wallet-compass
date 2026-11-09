@@ -62,7 +62,7 @@ function TxForm({ opts, onDone }: { opts: OpenOpts; onDone: () => void }) {
   const [error, setError] = useState<string | null>(null);
 
   const categories: readonly string[] = type === "income" ? INCOME_CATEGORIES : EXPENSE_CATEGORIES;
-  const effectiveCategory = categories.includes(category) ? category : categories[0];
+  const effectiveCategory = categories.includes(category) ? category : (categories[0] ?? "other");
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();

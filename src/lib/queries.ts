@@ -93,7 +93,7 @@ export type TxInput = {
 export function useSaveTransaction() {
   const invalidate = useInvalidate();
   return useMutation({
-    mutationFn: async ({ id, input }: { id?: string; input: TxInput }) => {
+    mutationFn: async ({ id, input }: { id?: string | undefined; input: TxInput }) => {
       if (id) {
         const { error } = await supabase.from("transactions").update(input).eq("id", id);
         if (error) throw error;
@@ -120,7 +120,7 @@ export function useDeleteTransaction() {
 export function useSaveBudget() {
   const invalidate = useInvalidate();
   return useMutation({
-    mutationFn: async ({ id, input }: { id?: string; input: TablesInsert<"budgets"> }) => {
+    mutationFn: async ({ id, input }: { id?: string | undefined; input: TablesInsert<"budgets"> }) => {
       const q = id
         ? supabase.from("budgets").update(input).eq("id", id)
         : supabase.from("budgets").insert(input);
@@ -145,7 +145,7 @@ export function useDeleteBudget() {
 export function useSaveCard() {
   const invalidate = useInvalidate();
   return useMutation({
-    mutationFn: async ({ id, input }: { id?: string; input: TablesInsert<"cards"> }) => {
+    mutationFn: async ({ id, input }: { id?: string | undefined; input: TablesInsert<"cards"> }) => {
       const q = id
         ? supabase.from("cards").update(input).eq("id", id)
         : supabase.from("cards").insert(input);
