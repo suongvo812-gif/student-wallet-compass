@@ -14,7 +14,185 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      budgets: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          monthly_limit: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          id?: string
+          monthly_limit: number
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          monthly_limit?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      cards: {
+        Row: {
+          bank: string
+          color: string
+          created_at: string
+          credit_limit: number
+          due_day: number | null
+          expiry: string
+          holder: string
+          id: string
+          last4: string
+          name: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          bank?: string
+          color?: string
+          created_at?: string
+          credit_limit?: number
+          due_day?: number | null
+          expiry?: string
+          holder?: string
+          id?: string
+          last4: string
+          name: string
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          bank?: string
+          color?: string
+          created_at?: string
+          credit_limit?: number
+          due_day?: number | null
+          expiry?: string
+          holder?: string
+          id?: string
+          last4?: string
+          name?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      notifications: {
+        Row: {
+          created_at: string
+          id: string
+          is_read: boolean
+          kind: string
+          params: Json
+          title_key: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          kind?: string
+          params?: Json
+          title_key: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          kind?: string
+          params?: Json
+          title_key?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          currency: string
+          full_name: string
+          id: string
+          language: string
+          school: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          currency?: string
+          full_name?: string
+          id: string
+          language?: string
+          school?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          currency?: string
+          full_name?: string
+          id?: string
+          language?: string
+          school?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      transactions: {
+        Row: {
+          amount: number
+          card_id: string | null
+          category: string
+          created_at: string
+          description: string
+          id: string
+          occurred_on: string
+          type: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          card_id?: string | null
+          category: string
+          created_at?: string
+          description?: string
+          id?: string
+          occurred_on?: string
+          type: string
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          amount?: number
+          card_id?: string | null
+          category?: string
+          created_at?: string
+          description?: string
+          id?: string
+          occurred_on?: string
+          type?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "transactions_card_fk"
+            columns: ["card_id"]
+            isOneToOne: false
+            referencedRelation: "cards"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

@@ -1,5 +1,13 @@
 {
   "version": "7",
   "dialect": "postgresql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1794195294968,
+      "tag": "0000_student_wallet_schema",
+      "breakpoints": true
+    }
+  ]
 }
