@@ -10,33 +10,169 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AuthenticatedBudgetRouteImport } from './routes/_authenticated/budget'
+import { Route as AuthenticatedCardsRouteImport } from './routes/_authenticated/cards'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedExpensesRouteImport } from './routes/_authenticated/expenses'
+import { Route as AuthenticatedIncomeRouteImport } from './routes/_authenticated/income'
+import { Route as AuthenticatedNotificationsRouteImport } from './routes/_authenticated/notifications'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedTransactionsRouteImport } from './routes/_authenticated/transactions'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedBudgetRoute = AuthenticatedBudgetRouteImport.update({
+  id: '/budget',
+  path: '/budget',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedCardsRoute = AuthenticatedCardsRouteImport.update({
+  id: '/cards',
+  path: '/cards',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedExpensesRoute = AuthenticatedExpensesRouteImport.update({
+  id: '/expenses',
+  path: '/expenses',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedIncomeRoute = AuthenticatedIncomeRouteImport.update({
+  id: '/income',
+  path: '/income',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedNotificationsRoute =
+  AuthenticatedNotificationsRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedTransactionsRoute =
+  AuthenticatedTransactionsRouteImport.update({
+    id: '/transactions',
+    path: '/transactions',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/budget': typeof AuthenticatedBudgetRoute
+  '/cards': typeof AuthenticatedCardsRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/expenses': typeof AuthenticatedExpensesRoute
+  '/income': typeof AuthenticatedIncomeRoute
+  '/notifications': typeof AuthenticatedNotificationsRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/transactions': typeof AuthenticatedTransactionsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/budget': typeof AuthenticatedBudgetRoute
+  '/cards': typeof AuthenticatedCardsRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/expenses': typeof AuthenticatedExpensesRoute
+  '/income': typeof AuthenticatedIncomeRoute
+  '/notifications': typeof AuthenticatedNotificationsRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/transactions': typeof AuthenticatedTransactionsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/budget': typeof AuthenticatedBudgetRoute
+  '/_authenticated/cards': typeof AuthenticatedCardsRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/expenses': typeof AuthenticatedExpensesRoute
+  '/_authenticated/income': typeof AuthenticatedIncomeRoute
+  '/_authenticated/notifications': typeof AuthenticatedNotificationsRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/_authenticated/transactions': typeof AuthenticatedTransactionsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/budget'
+    | '/cards'
+    | '/dashboard'
+    | '/expenses'
+    | '/income'
+    | '/notifications'
+    | '/settings'
+    | '/transactions'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/budget'
+    | '/cards'
+    | '/dashboard'
+    | '/expenses'
+    | '/income'
+    | '/notifications'
+    | '/settings'
+    | '/transactions'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/reset-password'
+    | '/_authenticated/budget'
+    | '/_authenticated/cards'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/expenses'
+    | '/_authenticated/income'
+    | '/_authenticated/notifications'
+    | '/_authenticated/settings'
+    | '/_authenticated/transactions'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +184,116 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/budget': {
+      id: '/_authenticated/budget'
+      path: '/budget'
+      fullPath: '/budget'
+      preLoaderRoute: typeof AuthenticatedBudgetRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/cards': {
+      id: '/_authenticated/cards'
+      path: '/cards'
+      fullPath: '/cards'
+      preLoaderRoute: typeof AuthenticatedCardsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/expenses': {
+      id: '/_authenticated/expenses'
+      path: '/expenses'
+      fullPath: '/expenses'
+      preLoaderRoute: typeof AuthenticatedExpensesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/income': {
+      id: '/_authenticated/income'
+      path: '/income'
+      fullPath: '/income'
+      preLoaderRoute: typeof AuthenticatedIncomeRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/notifications': {
+      id: '/_authenticated/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof AuthenticatedNotificationsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/transactions': {
+      id: '/_authenticated/transactions'
+      path: '/transactions'
+      fullPath: '/transactions'
+      preLoaderRoute: typeof AuthenticatedTransactionsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedBudgetRoute: typeof AuthenticatedBudgetRoute
+  AuthenticatedCardsRoute: typeof AuthenticatedCardsRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedExpensesRoute: typeof AuthenticatedExpensesRoute
+  AuthenticatedIncomeRoute: typeof AuthenticatedIncomeRoute
+  AuthenticatedNotificationsRoute: typeof AuthenticatedNotificationsRoute
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedTransactionsRoute: typeof AuthenticatedTransactionsRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedBudgetRoute: AuthenticatedBudgetRoute,
+  AuthenticatedCardsRoute: AuthenticatedCardsRoute,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedExpensesRoute: AuthenticatedExpensesRoute,
+  AuthenticatedIncomeRoute: AuthenticatedIncomeRoute,
+  AuthenticatedNotificationsRoute: AuthenticatedNotificationsRoute,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+  AuthenticatedTransactionsRoute: AuthenticatedTransactionsRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
