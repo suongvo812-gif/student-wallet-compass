@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      activity_events: {
+        Row: {
+          action: string | null
+          created_at: string
+          event: string
+          feature: string | null
+          id: string
+          path: string | null
+          session_id: string
+          user_id: string | null
+          visitor_id: string
+        }
+        Insert: {
+          action?: string | null
+          created_at?: string
+          event: string
+          feature?: string | null
+          id?: string
+          path?: string | null
+          session_id: string
+          user_id?: string | null
+          visitor_id: string
+        }
+        Update: {
+          action?: string | null
+          created_at?: string
+          event?: string
+          feature?: string | null
+          id?: string
+          path?: string | null
+          session_id?: string
+          user_id?: string | null
+          visitor_id?: string
+        }
+        Relationships: []
+      }
       budgets: {
         Row: {
           category: string
@@ -193,15 +229,87 @@ export type Database = {
           },
         ]
       }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      admin_auth_events: {
+        Args: { p_from: string; p_limit?: number; p_to: string }
+        Returns: {
+          email: string
+          event: string
+          occurred_at: string
+        }[]
+      }
+      admin_daily: {
+        Args: { p_from: string; p_to: string; p_tz?: string }
+        Returns: {
+          active_users: number
+          avg_session_seconds: number
+          day: string
+          new_accounts: number
+          page_views: number
+          sign_ins: number
+          sign_outs: number
+          visitors: number
+          visits: number
+        }[]
+      }
+      admin_overview: { Args: { p_from: string; p_to: string }; Returns: Json }
+      admin_users: {
+        Args: { p_from: string; p_search?: string; p_to: string }
+        Returns: {
+          avg_session_seconds: number
+          budget_count: number
+          created_at: string
+          email: string
+          email_verified: boolean
+          expense_records: number
+          full_name: string
+          income_records: number
+          is_admin: boolean
+          last_active: string
+          last_sign_in_at: string
+          page_views: number
+          sign_ins: number
+          total_session_seconds: number
+          user_id: string
+          visits: number
+        }[]
+      }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_admin: { Args: never; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -328,6 +436,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
