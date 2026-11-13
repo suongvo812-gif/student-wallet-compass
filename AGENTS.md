@@ -28,3 +28,4 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+- vite.config.ts defines public backend URL/publishable key as a fallback for import.meta.env; why: builds without .env (e.g. .gitignore excluded it) shipped a blank site.
