@@ -14,8 +14,8 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 const FALLBACK_SUPABASE_URL = "https://ybjlcvpqgpzdguvdvjzz.supabase.co";
 const FALLBACK_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_apbEuWaJptuNeIhU0PCLeg_0vUyBBli";
 
-const supabaseUrl = process.env.VITE_SUPABASE_URL || FALLBACK_SUPABASE_URL;
-const supabaseKey = process.env.VITE_SUPABASE_PUBLISHABLE_KEY || FALLBACK_SUPABASE_PUBLISHABLE_KEY;
+const supabaseUrl = process.env['VITE_SUPABASE_URL'] || FALLBACK_SUPABASE_URL;
+const supabaseKey = process.env['VITE_SUPABASE_PUBLISHABLE_KEY'] || FALLBACK_SUPABASE_PUBLISHABLE_KEY;
 
 export default defineConfig({
   tanstackStart: {
